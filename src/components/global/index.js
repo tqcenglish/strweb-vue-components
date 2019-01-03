@@ -1,7 +1,9 @@
-import Button from './button/index.vue'
+import StrWebButton from './strweb-button/index.vue'
+import StrWebSpan from './strweb-span/index.vue'
 
 const components = {
-  Button
+  StrWebButton,
+  StrWebSpan,
 }
 
 const install = function (Vue) {
@@ -15,9 +17,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-const API = {
+export default {
   install,
   ...components
 }
-
-export default API

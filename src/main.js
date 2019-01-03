@@ -1,17 +1,23 @@
 import Vue from 'vue'
-import App from './App.vue'
-
-import lyui from './components/index'
 import ElementUI from 'element-ui';
-
-
-Vue.use(lyui)
 Vue.use(ElementUI);
 
+// custom component
+import global from './components/global/index'
+Vue.use(global)
+
+import App from './App.vue'
+
 import 'element-ui/lib/theme-chalk/index.css';
+require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+require('../node_modules/bootstrap/dist/js/bootstrap.min.js');
+require('../node_modules/jquery/dist/jquery.min.js');
+
+import router from './router'
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')

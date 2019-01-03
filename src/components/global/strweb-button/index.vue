@@ -1,11 +1,10 @@
 <template>
   <button>
-    <slot></slot>
-    测试谁是
+    自定义 Button
   </button>
 </template>
 <script>
 export default {
-  name: 'ly-button'
+  name: 'strweb-button'
 }
 </script>
