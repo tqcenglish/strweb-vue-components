@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ly-button>测试</ly-button>
+      <pagination :total="total" :page.sync="page" :limit.sync="limit" @pagination="getData" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// import HelloWorld from './components/HelloWorld.vue'
+import Pagination from '@/components/Pagination'
 export default {
   name: 'app',
+  data: function () {
+    return {
+      total:0,
+      page:1,
+      limit:10,
+    }
+  },
   components: {
-    HelloWorld
+    // HelloWorld
+    Pagination
+  },
+  methods: {
+    getData: function () {
+      
+    }
   }
 }
 </script>
