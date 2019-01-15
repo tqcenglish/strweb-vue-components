@@ -8,14 +8,19 @@
         data-toggle="dropdown"
       >功能选择</button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="https://cc.zycoo.com/website-web">官网介绍</a>
-        <a class="dropdown-item" href="https://zycoo.gitbook.io/coocenter/">接口文档</a>
+        <a
+          class="dropdown-item"
+          v-for="link in links"
+          v-bind:key="link.name"
+          :href="link.path"
+        >{{link.name}}</a>
       </div>
     </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/master-web">主页
+          <a class="nav-link">
+            主页
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -29,7 +34,21 @@
 </template>
 <script>
 export default {
-  name: "strweb-header"
+  name: "strweb-header",
+  data() {
+    return {
+      links: [
+        {
+          name: "官网介绍",
+          path: "https://cc.zycoo.com/website-web"
+        },
+        {
+          name: "接口文档",
+          path: "https://zycoo.gitbook.io/coocenter/"
+        }
+      ]
+    };
+  }
 };
 </script>
 <style>

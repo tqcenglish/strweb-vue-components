@@ -2,7 +2,7 @@
   <body id="wrapper" class="toggled">
     <StrWebHeader></StrWebHeader>
     <main role="main">
-      <StrWebSidebar id="sidebar-wrapper"></StrWebSidebar>
+      <StrWebSidebar v-bind:menus="menus" id="sidebar-wrapper"></StrWebSidebar>
       <router-view id="page-content-wrapper"></router-view>
     </main>
   </body>
@@ -19,7 +19,16 @@ export default {
   },
   data: function() {
 		return {
-			plugins: [],
+      plugins: [],
+      menus:[ 
+        {
+          name: '表单',
+          path: '/form',
+        }, 
+        {
+          name:'关于',
+          path:'/about',
+        }]
 		};
   },
   computed: {

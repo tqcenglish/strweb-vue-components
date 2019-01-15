@@ -1,18 +1,23 @@
 <template>
   <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li>
-                <router-link class="nav-link" to="/form">表单</router-link>
-            </li>
-            <li>
-                <router-link class="nav-link" to="/dialog">弹框</router-link>
-            </li>
-            <li>
-                <router-link class="nav-link" to="/about">关于</router-link>
+            <li v-for="menu in menus" v-bind:key="menu.name">
+                <router-link class="nav-link" :to="menu.path">{{menu.name}}</router-link>
             </li>
         </ul>
       </div>
 </template>
+<script>
+export default {
+  name:"sidebar",
+  props: ['menus'],
+  data: function () {
+    return {
+    }
+  }
+}
+</script>
+
 <style>
 /* Sidebar Styles */
 
