@@ -19,15 +19,15 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link">
-            主页
+          <a class="nav-link" href="/">
+            首页
             <span class="sr-only">(current)</span>
           </a>
         </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0">
-        <span style="color: white;">Admin</span>&nbsp;&nbsp;
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button">注销</button>
+        <span style="color: white;">{{name}}</span>&nbsp;&nbsp;
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" @click="logout">注销</button>
       </form>
     </div>
   </nav>
@@ -35,6 +35,7 @@
 <script>
 export default {
   name: "strweb-header",
+  props: ['name'],
   data() {
     return {
       links: [
@@ -48,7 +49,12 @@ export default {
         }
       ]
     };
-  }
+  },
+  methods: {
+    logout: function (params) {
+      this.$emit('logout');
+    }
+  },
 };
 </script>
 <style>
