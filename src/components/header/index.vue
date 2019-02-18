@@ -27,6 +27,8 @@
       </ul>
       <form class="form-inline mt-2 mt-md-0">
         <span style="color: white;">{{name}}</span>&nbsp;&nbsp;
+        <button v-if="enableReboot" class="btn btn-outline-danger my-2 my-sm-0" type="button" @click="reboot">重启</button>
+        &nbsp;
         <button class="btn btn-outline-success my-2 my-sm-0" type="button" @click="logout">注销</button>
       </form>
     </div>
@@ -35,7 +37,7 @@
 <script>
 export default {
   name: "strweb-header",
-  props: ['name'],
+  props: ['name', 'enableReboot'],
   data() {
     return {
       links: [
@@ -51,8 +53,11 @@ export default {
     };
   },
   methods: {
-    logout: function (params) {
+    logout: function () {
       this.$emit('logout');
+    },
+    reboot: function () {
+      this.$emit('reboot');
     }
   },
 };
