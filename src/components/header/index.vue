@@ -2,11 +2,12 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="dropdown">
       <button
+        v-if="functionDisplay"
         class="btn btn-secondary dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
         data-toggle="dropdown"
-      >功能选择</button>
+      >{{functionDisplay}}</button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a
           class="dropdown-item"
@@ -18,18 +19,18 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <li v-if="homeDisplay" class="nav-item">
           <a class="nav-link" href="/">
-            首页
+            {{homeDisplay}}
             <span class="sr-only">(current)</span>
           </a>
         </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0">
         <span style="color: white;">{{name}}</span>&nbsp;&nbsp;
-        <button v-if="enableReboot" class="btn btn-outline-danger my-2 my-sm-0" type="button" @click="reboot">重启</button>
+        <button v-if="rebootDisplay" class="btn btn-outline-danger my-2 my-sm-0" type="button" @click="reboot">{{rebootDisplay}}</button>
         &nbsp;
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" @click="logout">注销</button>
+        <button v-if="logoutDisplay" class="btn btn-outline-success my-2 my-sm-0" type="button" @click="logout">{{logoutDisplay}}</button>
       </form>
     </div>
   </nav>
@@ -37,7 +38,7 @@
 <script>
 export default {
   name: "strweb-header",
-  props: ['name', 'enableReboot'],
+  props: ['name', 'functionDisplay', 'homeDisplay', 'rebootDisplay', 'logoutDisplay'],
   data() {
     return {
       links: [
@@ -63,9 +64,9 @@ export default {
 };
 </script>
 <style>
-/*顶部菜单高度 56px*/
+/*顶部菜单高度 54px*/
 main {
-  padding-top: 56px;
+  padding-top: 54px;
 }
 
 .router-link-active {
