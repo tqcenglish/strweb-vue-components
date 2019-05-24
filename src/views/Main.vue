@@ -1,44 +1,57 @@
 <template>
-  <body id="wrapper" class="toggled">
-    <StrWebHeader></StrWebHeader>
+  <body id="wrapper" :class="{toggled}">
+    <StrWebHeader
+      v-bind:logoutDisplay="'注销'"
+      v-bind:functionDisplay="true"
+      v-bind:rebootDisplay="'重启'"
+      v-on:toggleMenu="toggleMenu"
+      v-on:logout="logout"
+      v-on:reboot="reboot"
+    ></StrWebHeader>
     <main role="main">
-      <StrWebSidebar v-bind:menus="menus" id="sidebar-wrapper"></StrWebSidebar>
+      <StrWebSidebar v-bind:menus="menus" id="sidebar-wrapper" class="sidebar-wrapper-hide"></StrWebSidebar>
       <router-view id="page-content-wrapper"></router-view>
     </main>
   </body>
 </template>
 <script>
-import StrWebHeader from '../components/header/index';
-import StrWebSidebar from '../components/sidebar/index';
+import StrWebHeader from "../components/header/index";
+import StrWebSidebar from "../components/sidebar/index";
 
 export default {
-  name: 'main-layout',
+  name: "main-layout",
   components: {
     StrWebHeader,
     StrWebSidebar
   },
   data: function() {
-		return {
+    return {
+      toggled: true,
       plugins: [],
-      menus:[ 
+      menus: [
         {
-          name: '表单',
-          path: '/form',
-        }, 
+          name: "表单",
+          path: "/form"
+        },
         {
-          name:'关于',
-          path:'/about',
-        }]
-		};
+          name: "关于",
+          path: "/about"
+        }
+      ]
+    };
   },
-  computed: {
-  },
+  computed: {},
   mounted() {
-    console.warn('mounted');
+    console.warn("mounted");
   },
   methods: {
+    reboot() {},
+    logout() {},
+    toggleMenu() {
+      this.toggled = !this.toggled;
+    }
   }
-}
+};
 </script>
 <style>
 #wrapper {
@@ -72,14 +85,17 @@ export default {
   width: 250px;
 }
 
+#wrapper #sidebar-wrapper {
+  width: 0px;
+}
+
 #page-content-wrapper {
   position: relative;
   padding: 15px;
 }
 
-
-/*顶部菜单高度 56px*/
+/*顶部菜单高度 54px*/
 main {
-  padding-top: 56px; 
+  padding-top: 54px;
 }
 </style>
