@@ -13,27 +13,6 @@
           </a>
         </li>
       </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <span style="color: white;">{{ name }}</span
-        >&nbsp;&nbsp;
-        <button
-          v-if="rebootDisplay"
-          class="btn btn-outline-danger my-2 my-sm-0"
-          type="button"
-          @click="reboot"
-        >
-          {{ rebootDisplay }}
-        </button>
-        &nbsp;
-        <button
-          v-if="logoutDisplay"
-          class="btn btn-outline-success my-2 my-sm-0"
-          type="button"
-          @click="logout"
-        >
-          {{ logoutDisplay }}
-        </button>
-      </form>
     </div>
   </nav>
 </template>
