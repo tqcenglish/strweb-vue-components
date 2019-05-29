@@ -1,4 +1,4 @@
-import {  logout, getInfo } from '@/api/user'
+import {login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -24,32 +24,26 @@ const actions = {
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo
-    // return new Promise((resolve, reject) => {
-    //   login({ username: username.trim(), password: password }).then(response => {
-    //     const { data } = response
-    //     commit('SET_TOKEN', data.token)
-    //     setToken(data.token)
-    //     resolve()
-    //   }).catch(error => {
-    //     reject(error)
-    //   })
-    // })
-    // login();
-    commit('SET_TOKEN', '111');
-    setToken('111');
-    console.log(username, password);
-    return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      login({ username: username.trim(), password: password }).then(response => {
+        const { data } = response
+        commit('SET_TOKEN', data.token)
+        setToken(data.token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
   },
 
   // get user info
   getInfo({ commit, state }) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response
 
         if (!data) {
-          // reject('Verification failed, please Login again.')
-          resolve('');
+          reject('Verification failed, please Login again.')
         }
 
         const { name, avatar } = data
@@ -57,9 +51,8 @@ const actions = {
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         resolve(data)
-      }).catch( () => {
-        resolve('');
-        // reject(error)
+      }).catch( (error) => {
+        reject(error)
       })
     })
   },
